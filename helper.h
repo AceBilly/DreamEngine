@@ -1,0 +1,9 @@
+#pragma once
+#include <wrl.h>
+#include <source_location>
+#include <iostream>
+#include <string_view>
+#include <d3d12.h>
+#include <dxgi.h>
+#include <dxgi1_4.h>
+#include "d3dx12.h"
