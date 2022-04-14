@@ -15,10 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pch.h">
+    <ClInclude Include="include\ReflectionMarco.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
