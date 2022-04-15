@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-import Reflection;
+import Core.Reflection;
 
 TEST(TestCaseName, TestName) {
   EXPECT_EQ(3, add(1,2));

@@ -74,8 +74,8 @@
     <OutDir>$(SolutionDir)bin\libs\Core\$(Platform)\$(Configuration)\</OutDir>
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
-    <LibraryPath>C:\Program Files\LLVM\lib\;$(LibraryPath)</LibraryPath>
-    <ExternalIncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);C:\Program Files\LLVM\Include\;</ExternalIncludePath>
+    <LibraryPath>C:\Program Files\LLVM\install\lib;$(LibraryPath)</LibraryPath>
+    <ExternalIncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);C:\Program Files\LLVM\install\include</ExternalIncludePath>
     <AllProjectBMIsArePublic>false</AllProjectBMIsArePublic>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -126,8 +126,11 @@
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <ScanSourceForModuleDependencies>true</ScanSourceForModuleDependencies>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <ModuleOutputFile>$(SolutionDir)Module\IFC\$(Platform)\$(Configuration)\</ModuleOutputFile>
-      <ModuleDependenciesFile>$(SolutionDir)Module\$(Platform)\$(Configuration)\</ModuleDependenciesFile>
+      <ModuleOutputFile>$(SolutionDir)Modules\$(Platform)\$(Configuration)\IFC\</ModuleOutputFile>
+      <ModuleDependenciesFile>$(SolutionDir)Modules\$(Platform)\$(Configuration)\</ModuleDependenciesFile>
+      <ObjectFileName>$(SolutionDir)bin\OBJ\</ObjectFileName>
+      <Optimization>Disabled</Optimization>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -136,6 +139,7 @@
     </Link>
     <Lib>
       <AdditionalDependencies>libclang.lib</AdditionalDependencies>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -162,6 +166,7 @@
     <ClInclude Include="include\ReflectionMarco.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Sources\Core\Modules\Core.ixx" />
     <ClCompile Include="Sources\Core\Modules\Reflection\Reflection.ixx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
