@@ -138,8 +138,9 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>libclang.lib</AdditionalDependencies>
+      <AdditionalDependencies>version.lib;clangTooling.lib;clangFrontend.lib;clangSerialization.lib;clangDriver.lib;clangRewriteFrontend.lib;clangRewrite.lib;clangParse.lib;clangSema.lib;clangAnalysis.lib;clangAST.lib;clangASTMatchers.lib;clangEdit.lib;clangLex.lib;clangBasic.lib;LLVMAsmParser.lib;LLVMBitReader.lib;LLVMBitstreamReader.lib;LLVMMC.lib;LLVMOption.lib;LLVMSupport.lib;LLVMWindowsDriver.lib;LLVMFrontendOpenMP.lib;LLVMCore.lib;LLVMBinaryFormat.lib;LLVMRemarks.lib;LLVMMCParser.lib;LLVMInstrumentation.lib;LLVMObject.lib;LLVMDebugInfoDWARF.lib;LLVMTextAPI.lib;LLVMDemangle.lib;LLVMProfileData.lib</AdditionalDependencies>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalLibraryDirectories>C:\Program Files\LLVM\install\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

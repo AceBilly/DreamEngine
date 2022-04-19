@@ -10,6 +10,7 @@ module;
 #include "clang/Tooling/CommonOptionsParser.h"
 #include "llvm/Support/CommandLine.h"
 #include "clang/Tooling/Tooling.h"
+#include "clang/AST/JSONNodeDumper.h"
 
 export module Core.Reflection;
 
@@ -17,9 +18,10 @@ export module Core.Reflection;
 export namespace Dream {
 	export namespace Reflection {
 		export int getClassTypeDumpInfo(int &argc, const char** argv);
-		clang::ast_matchers::DeclarationMatcher reflectionAttrMatcher = 
+		// ∆•≈‰πÊ‘Ú
+		static clang::ast_matchers::DeclarationMatcher reflectionAttrMatcher = 
 			clang::ast_matchers::cxxRecordDecl(clang::ast_matchers::hasAttr(clang::attr::Annotate)).bind("reflection_class_ID");
-		llvm::cl::OptionCategory MyToolCategory("global-detect options");
+		static llvm::cl::OptionCategory MyToolCategory("my-tool options");
 
 		class GenerateTypeInfo 
 			: public clang::ast_matchers::MatchFinder::MatchCallback {
@@ -43,12 +45,14 @@ int Dream::Reflection::getClassTypeDumpInfo(int &argc, const char** argv) {
 	clang::ast_matchers::MatchFinder matchFinder;
 	GenerateTypeInfo matchCallback;
 	matchFinder.addMatcher(reflectionAttrMatcher, &matchCallback);
-	return 0;
+	return tool.run(clang::tooling::newFrontendActionFactory(&matchFinder).get());
 }
 
 void Dream::Reflection::GenerateTypeInfo::run(const clang::ast_matchers::MatchFinder::MatchResult& result) {
+	
 	if (const clang::CXXRecordDecl *reflectionStmt 
 		= result.Nodes.getNodeAs<clang::CXXRecordDecl>(llvm::StringRef("reflection_class_ID"))) {
 		reflectionStmt->dumpColor();
+		clang::JSONNodeDumper()
 	}
 }
